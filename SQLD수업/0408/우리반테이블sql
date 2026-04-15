@@ -1,0 +1,39 @@
+
+create table  acorntbl  (
+    id  varchar2(10) primary key,
+    pw  varchar2(10) ,
+    name varchar2(10),
+    point number(6) , 
+    birthday date    
+);
+--데이터베이스  문자열 '' 사용함 !! 
+--데이터조작시 추가(INSERT) , 변경(UPDATE ) , 삭제 (DELETE)시 COMMIT 필수!!
+
+insert  into  acorntbl(id, pw, name, point, birthday) values('victoai', '1224', '우주연' ,1000 , '1975-12-10'); 
+insert into acorntbl values('sys', '1009', '손영석' ,100 , '2003-01-09');
+insert into acorntbl(id, pw, name, point, birthday)  values('minjeong', '0604', '김민정' ,33333 , '2002-06-04');
+insert into acorntbl(id, pw, name, point, birthday)  values('nice', '0624', '나해수' ,1000 , '2003-06-24');
+insert into acorntbl(id, pw, name, point, birthday)  values('leejeongha', 'jh1234', '이정하' ,200 , '2000-02-17'); 
+COMMIT;
+insert into acorntbl(id, pw, name, point, birthday)  values('sein', '1234', '박세인' ,1000 , '2005-01-25'); 
+COMMIT;
+insert into acorntbl(id, pw, name, point, birthday)  values('charlie', '1029', '이현겸' ,6700 , '2003-01-15');
+insert into acorntbl(id,pw,name,point,birthday) values('victoai','1234','김태준',1000,'2004-03-30');
+commit;
+insert into acorntbl(id, pw, name, point, birthday)  values('yong', '4768', '이용찬' ,100 , '2002-05-04');
+insert into acorntbl(id, pw, name, poiint, birthday) values('wnckd', '123456', '송주창', 4324, '2001-11-21');
+insert into acorntbl(id, pw, name, point, birthday) values('jaemin','0320','김재민',9000,'2002-03-20');
+insert into acorntbl(id, pw, name, point, birthday)  
+values('sone919', '1234', '황스일' ,100 , '2002-09-19');
+insert into acorntbl(id, pw, name, point, birthday)  values('ydh', '1234', '여도현' ,100 , '2000-01-24');
+insert  into  acorntbl(id, pw, name, point, birthday) values('jcj', '1234', '정철진' ,1000 , '2002-01-25');
+insert into acorntbl(id,pw,name,point,birthday) values('ejh', '1234','엄진희',1000,'2001-10-28');
+insert into acorntbl(id, pw, name, point, birthday)  values('rjsgml350', '1224', '김건희' ,10000 , '2002-10-10');
+insert into acorntbl(id, pw, name, point, birthday)  values('jyon', '1234', '고지연' ,100 , '1983-04-09');
+insert into acorntbl(id, pw, name, point, birthday)  values('HIHI', '0401', '장해든' ,1004 , '2004-04-01');
+insert  into  acorntbl(id, pw, name, point, birthday) values('jang', '1224', '장윤성' ,1000 , '2002'-02-08');
+insert into acorntbl(id, pw, name, point, birthday) values('dkwls', '0830', '조아진', 1000, '2000-08-30');
+insert into acorntbl(id, pw, name, point, birthday) values('min', '0113', '김민경', 1000, '2003-01-13');
+ 
+COMMIT;
+

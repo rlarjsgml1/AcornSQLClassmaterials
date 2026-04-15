@@ -1,0 +1,64 @@
+--문제  상품별 판매수량의 합계  인라인 서브쿼리로 구해보기
+-- 1)상품코드별 판매수량 합 
+-- 2) 위의 내용을 서브쿼리 (인라인 서브쿼리)로 만들고 상품테이블 조인하여 상품명 나오게 하기
+
+--교재 문제 풀이 
+--420페이지  
+--1.PROFESSOR 테이블과DEPARTMENT 테이블을 조인하여 교수번호와 교수이름, 소속 학과이름을 조회하는 VIEW를 생성하세요( VIEW이름은 V_PROF_DEPT2로 하세요)
+SELECT * FROM PROFESSOR;
+SELECT * FROM DEPARTMENT;
+
+CREATE VIEW V_PROF_DEPT2
+AS
+SELECT P.PROFNO, P.NAME, D.DNAME
+FROM PROFESSOR P
+JOIN DEPARTMENT D
+ON P.DEPTNO = D.DEPTNO;
+--VIEW 삭제( 아직 안함)
+--DROP VIEW V_PROF_DEPT2;
+
+--2.INLINE VIEW를 사용하여 아래 그림과 같이 STUDENT 테이블과 DEPARTMENT테이블을 사용하여 학과별로 학생들의 최대 키와 최대 몸무게 학과이름을 출력하세요
+SELECT * FROM STUDENT;
+SELECT * FROM DEPARTMENT;
+SELECT D.DNAME, S.MAX_HEIGHT, S.MAX_WEIGHT 
+FROM DEPARTMENT D
+JOIN (
+    SELECT DEPTNO1, MAX(HEIGHT) AS MAX_HEIGHT, MAX(WEIGHT) AS MAX_WEIGHT FROM STUDENT
+    GROUP BY DEPTNO1
+) S
+ON D.DEPTNO = S.DEPTNO1;
+
+--3 STUDENT테이블과 DEPARTMENT테이블을 사용하여 학과 이름,학과별 최대키, 학과별로 가장키가 큰 학생들의 이름과 키를 INLINE VIEW를 사용하여 아래와 같이 출력하세요
+SELECT * FROM STUDENT;
+SELECT * FROM DEPARTMENT;
+SELECT D.DNAME, M.MAX_HEIGHT, S.NAME, S.HEIGHT
+FROM DEPARTMENT D
+JOIN (
+    SELECT DEPTNO1, MAX(HEIGHT) AS MAX_HEIGHT FROM STUDENT
+    GROUP BY DEPTNO1
+) M
+ON D.DEPTNO = M.DEPTNO1
+JOIN STUDENT S
+ON S.DEPTNO1 = M.DEPTNO1
+AND S.HEIGHT = M.MAX_HEIGHT;
+
+--4 STUDNET테이블에서 학생의 키가 동일 학년의 평균 키보다 큰 학생들의 학년과 이름과 키, 해당 학년의 평균 키를 출력하되 INLINE VIEW를 사용해서 아래와 같이 출력하세요(학년 컬럼으로 오름차순 정렬해서 출력하세요)
+SELECT * FROM STUDENT;
+SELECT S.GRADE, S.NAME, S.HEIGHT,M.AVG_HEIGHT
+FROM STUDENT S
+JOIN (
+    SELECT GRADE, AVG(HEIGHT) AS AVG_HEIGHT 
+    FROM STUDENT
+    GROUP BY GRADE
+) M 
+ON S.GRADE = M.GRADE
+WHERE S.HEIGHT > M.AVG_HEIGHT
+ORDER BY S.GRADE;
+
+--5.PROFESSOR 테이블을 조회하여 아래와 같이 교수들의 급여 순위와 이름과 급여를 출력하시오, 단 급여 순위는 급여가 많은 사람부터 1~5위까지 출력하세요.
+SELECT * FROM PROFESSOR;
+SELECT ROWNUM AS Ranking ,NAME, PAY 
+FROM (
+    SELECT NAME, PAY FROM PROFESSOR ORDER BY PAY DESC
+)
+WHERE ROWNUM < = 5;
