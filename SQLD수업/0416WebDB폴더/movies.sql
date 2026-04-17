@@ -16,3 +16,5 @@ INSERT INTO MOVIE (TITLE, GENRE, DURATION) VALUES ('룩백', '드라마', 57);
 INSERT INTO MOVIE (TITLE, GENRE, DURATION) VALUES ('오지:사라진 숲을 찾아서', '애니메이션', 87);
 
 COMMIT;
+
+select * from MOVIE;
